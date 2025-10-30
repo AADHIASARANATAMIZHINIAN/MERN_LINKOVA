@@ -42,10 +42,20 @@ app.get('/', (req, res) => {
 });
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI)
+const mongoURI = process.env.MONGO_URI;
+
+if (!mongoURI) {
+  console.error('ERROR: MONGO_URI environment variable is not set!');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('MongoDB Connected Successfully'))
   .catch(err => {
-    console.error('MongoDB Connection Error:', err);
+    console.error('MongoDB Connection Error:', err.message);
     process.exit(1);
   });
 
