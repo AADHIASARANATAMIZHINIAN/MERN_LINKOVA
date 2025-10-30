@@ -1,6 +1,21 @@
 # LINKOVA - Social Media App
 
-A modern full-stack social media application built with React and Node.js.
+# 🚀 LINKOVA - Social Media Platform
+
+A modern full-stack social media application built with the MERN stack.
+
+## 🌐 Live Demo
+
+**🔗 Try it now:** [https://linkova.netlify.app](https://69037ac26b50c8b93d22fc5b--linkova.netlify.app/)
+
+### Deployment Status
+- ✅ Frontend: Deployed on Netlify
+- ✅ Backend: Deployed on Render
+- ✅ Database: MongoDB Atlas
+
+---
+
+## ✨ Features
 
 ## Features
 
@@ -68,68 +83,155 @@ FULL STACK APP/
     └── package.json
 ```
 
-## Installation & Setup
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB Atlas account or local MongoDB
-- Git
 
-### Backend Setup
+- Node.js (v14+)
+- MongoDB
+- npm or yarn
 
-1. Navigate to backend folder:
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/AADHIASARANATAMIZHINIAN/MERN_LINKOVA.git
+cd MERN_LINKOVA
+```
+
+2. **Setup Backend**
+
 ```bash
 cd backend
-```
-
-2. Install dependencies:
-```bash
 npm install
 ```
 
-3. Create `.env` file:
+Create `.env` file:
+
 ```env
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+JWT_SECRET=your_secret_key
 PORT=5000
+CLIENT_URL=http://localhost:3000
 ```
 
-4. Start the server:
+Start backend:
+
 ```bash
 npm start
 ```
 
-Server will run on `http://localhost:5000`
+3. **Setup Frontend**
 
-### Frontend Setup
-
-1. Navigate to frontend folder:
 ```bash
-cd frontend
-```
-
-2. Install dependencies:
-```bash
+cd ../frontend
 npm install
 ```
 
-3. Start the development server:
+Create `.env` file:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
+
+Start frontend:
+
 ```bash
 npm start
 ```
 
-Frontend will run on `http://localhost:3000`
+4. **Open** http://localhost:3000
 
-## Environment Variables
+---
 
-### Backend (.env)
-- `MONGO_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret key for JWT tokens
-- `PORT` - Server port (default: 5000)
+## 📁 Project Structure
 
-### Frontend
-The frontend connects to backend at `http://localhost:5000/api` by default.
-For production, update the API URL in `src/utils/api.js`
+```
+MERN_LINKOVA/
+├── backend/
+│   ├── models/
+│   │   ├── User.js
+│   │   └── Post.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── posts.js
+│   │   └── users.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── server.js
+│   └── package.json
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   │   ├── Feed.js
+│   │   │   ├── Login.js
+│   │   │   ├── Signup.js
+│   │   │   └── Profile.js
+│   │   ├── utils/
+│   │   │   └── api.js
+│   │   ├── App.js
+│   │   └── index.js
+│   └── package.json
+└── README.md
+```
+
+---
+
+## 🌐 Deployment
+
+### Frontend (Netlify)
+- Automatic deployments from `main` branch
+- Environment variable: `REACT_APP_API_URL`
+
+### Backend (Render)
+- Automatic deployments from `main` branch
+- Environment variables: `MONGO_URI`, `JWT_SECRET`, `CLIENT_URL`
+
+### Database (MongoDB Atlas)
+- Cloud-hosted MongoDB cluster
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Aadhiasarana Tamizhinian**
+- GitHub: [@AADHIASARANATAMIZHINIAN](https://github.com/AADHIASARANATAMIZHINIAN)
+
+---
+
+## 🙏 Acknowledgments
+
+- MongoDB for database hosting
+- Netlify for frontend hosting
+- Render for backend hosting
+- GitHub for version control
+
+---
+
+**⭐ Star this repo if you like it!**
 
 ## API Endpoints
 
@@ -153,37 +255,24 @@ For production, update the API URL in `src/utils/api.js`
 
 ## Features Showcase
 
-### Authentication System
-- Secure password hashing with bcryptjs
-- JWT token-based authentication
-- Protected routes
-- Persistent login with localStorage
 
-### User Profiles
-- View any user's profile
-- Edit your own profile (name, bio, avatar)
-- Change password
-- View user's posts
+---
 
-### Posts & Interactions
-- Create posts with text content
-- Like/unlike posts
-- Add comments
-- Delete your own posts and comments
-- Real-time post feed
+## ✨ Features
 
-### Mobile Responsive
-- Hamburger menu on mobile
-- Touch-friendly interface
-- Responsive layout
-- Optimized for all screen sizes
+- 🔐 User Authentication (JWT)
+- 📝 Create, Read, Update, Delete Posts
+- ❤️ Like/Unlike Posts
+- 💬 Comment on Posts
+- 👤 User Profiles with Bio & Avatar
+- 📱 Fully Mobile Responsive
+- 🎨 Modern Professional UI
+- 🔔 Toast Notifications
+- ⚡ Loading States & Animations
 
-### UI Enhancements
-- Toast notifications for user feedback
-- Loading skeletons while fetching data
-- Smooth animations and transitions
-- Custom scrollbar
-- Hover effects on interactive elements
+---
+
+## 🛠️ Tech Stack
 
 ## Deployment
 
