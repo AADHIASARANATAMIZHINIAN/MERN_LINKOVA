@@ -494,6 +494,88 @@ const Feed = () => {
         </div>
       </div>
     </div>
+
+    {/* Mobile Responsive Styles */}
+    <style>{`
+      /* Desktop styles - Sidebar visible */
+      .sidebar {
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .sidebar-overlay {
+        display: none;
+      }
+      
+      .mobile-header {
+        display: none !important;
+      }
+
+      /* Tablet and Mobile */
+      @media (max-width: 1024px) {
+        .sidebar {
+          transform: translateX(-100%);
+          z-index: 1000;
+        }
+        
+        .sidebar.open {
+          transform: translateX(0);
+        }
+        
+        .sidebar-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: none;
+          z-index: 999;
+        }
+        
+        .sidebar-overlay.open {
+          display: block;
+        }
+        
+        .mobile-header {
+          display: flex !important;
+        }
+        
+        .main-content {
+          margin-left: 0 !important;
+          width: 100% !important;
+          padding: 16px !important;
+        }
+      }
+
+      /* Mobile phones */
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 12px !important;
+        }
+        
+        .sidebar {
+          width: 280px !important;
+        }
+      }
+
+      /* Small phones */
+      @media (max-width: 480px) {
+        .main-content {
+          padding: 8px !important;
+        }
+        
+        .sidebar {
+          width: 85vw !important;
+          max-width: 320px !important;
+        }
+        
+        .mobile-header button {
+          padding: 12px !important;
+          min-height: 48px !important;
+        }
+      }
+    `}</style>
     </>
   );
 };
