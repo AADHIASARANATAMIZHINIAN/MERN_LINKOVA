@@ -172,15 +172,15 @@ const Profile = () => {
         onClick={() => setIsSidebarOpen(false)}
       />
 
-      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--background)' }}>
         {/* Sidebar */}
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`} style={{
         width: '260px',
-        backgroundColor: '#fff',
-        borderRight: '1px solid #e1e4e8',
+        backgroundColor: 'var(--surface)',
+        borderRight: '1px solid var(--border-color)',
         position: 'fixed',
         height: '100vh',
-        boxShadow: '2px 0 8px rgba(0,0,0,0.05)',
+        boxShadow: '2px 0 8px var(--shadow)',
         display: 'flex',
         flexDirection: 'column'
       }}>
@@ -196,7 +196,7 @@ const Profile = () => {
           <div style={{
             fontSize: 24,
             fontWeight: 700,
-            color: '#0984e3',
+            color: 'var(--primary-color)',
             marginBottom: 40,
             paddingLeft: 8
           }}>
@@ -210,14 +210,14 @@ const Profile = () => {
           gap: 12,
           padding: '12px 8px',
           marginBottom: 24,
-          backgroundColor: '#f6f8fa',
+          backgroundColor: 'var(--background)',
           borderRadius: 8
         }}>
           <div style={{
             width: 48,
             height: 48,
             borderRadius: '50%',
-            backgroundColor: '#0984e3',
+            backgroundColor: 'var(--primary-color)',
             color: 'white',
             display: 'flex',
             alignItems: 'center',
@@ -228,10 +228,10 @@ const Profile = () => {
             {getInitial(currentUser.name)}
           </div>
           <div style={{ flex: 1, overflow: 'hidden' }}>
-            <div style={{ fontWeight: 600, fontSize: 15, color: '#24292e', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {currentUser.name}
             </div>
-            <div style={{ fontSize: 13, color: '#586069' }}>
+            <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>
               @{currentUser.name.toLowerCase().replace(/\s+/g, '')}
             </div>
           </div>
@@ -249,7 +249,7 @@ const Profile = () => {
               padding: '12px 16px',
               marginBottom: 8,
               backgroundColor: 'transparent',
-              color: '#24292e',
+              color: 'var(--text-primary)',
               border: 'none',
               borderRadius: 8,
               cursor: 'pointer',
@@ -257,7 +257,7 @@ const Profile = () => {
               fontWeight: 600,
               transition: 'all 0.2s'
             }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f6f8fa'}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--background)'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             <span style={{ fontSize: 20 }}>🏠</span>
@@ -273,7 +273,7 @@ const Profile = () => {
               gap: 12,
               padding: '12px 16px',
               marginBottom: 8,
-              backgroundColor: '#0984e3',
+              backgroundColor: 'var(--primary-color)',
               color: 'white',
               border: 'none',
               borderRadius: 8,
@@ -292,8 +292,8 @@ const Profile = () => {
         {/* Logout Button - Fixed at bottom */}
         <div style={{
           padding: '16px',
-          borderTop: '1px solid #e1e4e8',
-          backgroundColor: '#fff'
+          borderTop: '1px solid var(--border-color)',
+          backgroundColor: 'var(--surface)'
         }}>
           <button
             onClick={logout}
@@ -302,9 +302,9 @@ const Profile = () => {
               alignItems: 'center',
               gap: 12,
               padding: '12px 16px',
-              backgroundColor: '#fff',
-              color: '#d73a49',
-              border: '1.5px solid #d73a49',
+              backgroundColor: 'var(--surface)',
+              color: 'var(--danger-color)',
+              border: '1.5px solid var(--danger-color)',
               borderRadius: 8,
               cursor: 'pointer',
               fontSize: 15,
@@ -313,12 +313,12 @@ const Profile = () => {
               width: '100%'
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#d73a49';
+              e.currentTarget.style.backgroundColor = 'var(--danger-color)';
               e.currentTarget.style.color = 'white';
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = '#fff';
-              e.currentTarget.style.color = '#d73a49';
+              e.currentTarget.style.backgroundColor = 'var(--surface)';
+              e.currentTarget.style.color = 'var(--danger-color)';
             }}
           >
             <span style={{ fontSize: 20 }}>🚪</span>
@@ -348,7 +348,7 @@ const Profile = () => {
               display: 'flex',
               alignItems: 'center',
               gap: 8,
-              color: '#0984e3',
+              color: 'var(--primary-color)',
               fontWeight: 700
             }}
           >
@@ -359,10 +359,10 @@ const Profile = () => {
 
         {/* Profile Card */}
         <div style={{ 
-        backgroundColor: '#fff', 
+        backgroundColor: 'var(--surface)', 
         padding: '32px', 
         borderRadius: 12, 
-        boxShadow: '0 2px 8px rgba(0,0,0,.08)',
+        boxShadow: '0 2px 8px var(--shadow)',
         marginBottom: '32px'
       }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '24px' }}>
@@ -371,7 +371,7 @@ const Profile = () => {
             width: 100,
             height: 100,
             borderRadius: '50%',
-            backgroundColor: '#0984e3',
+            backgroundColor: 'var(--primary-color)',
             color: 'white',
             display: 'flex',
             alignItems: 'center',
@@ -487,7 +487,7 @@ const Profile = () => {
                   <button
                     type="submit"
                     style={{
-                      backgroundColor: '#0984e3',
+                      backgroundColor: 'var(--primary-color)',
                       color: 'white',
                       border: 'none',
                       padding: '10px 24px',
@@ -541,7 +541,7 @@ const Profile = () => {
                     <button
                       onClick={() => setEditing(true)}
                       style={{
-                        backgroundColor: '#0984e3',
+                        backgroundColor: 'var(--primary-color)',
                         color: 'white',
                         border: 'none',
                         padding: '8px 20px',
@@ -571,26 +571,26 @@ const Profile = () => {
           <div style={{ 
             textAlign: 'center', 
             padding: '48px', 
-            backgroundColor: '#f8f9fa', 
+            backgroundColor: 'var(--background)', 
             borderRadius: 12 
           }}>
-            <p style={{ color: '#999' }}>No posts yet</p>
+            <p style={{ color: 'var(--text-tertiary)' }}>No posts yet</p>
           </div>
         ) : (
           posts.map(post => (
             <div key={post._id} style={{ 
-              backgroundColor: '#fff', 
+              backgroundColor: 'var(--surface)', 
               padding: 20, 
               marginBottom: 16, 
               borderRadius: 12, 
-              boxShadow: '0 2px 4px rgba(0,0,0,.08)' 
+              boxShadow: '0 2px 4px var(--shadow)' 
             }}>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
                 <div style={{
                   width: 40,
                   height: 40,
                   borderRadius: '50%',
-                  backgroundColor: '#0984e3',
+                  backgroundColor: 'var(--primary-color)',
                   color: 'white',
                   display: 'flex',
                   alignItems: 'center',
@@ -610,7 +610,7 @@ const Profile = () => {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#e74c3c',
+                      color: 'var(--danger-color)',
                       cursor: 'pointer',
                       fontSize: 20,
                       padding: 4
@@ -622,7 +622,7 @@ const Profile = () => {
                 )}
               </div>
 
-              <p style={{ fontSize: 15, lineHeight: 1.5, marginBottom: 12, whiteSpace: 'pre-wrap' }}>
+              <p style={{ fontSize: 15, lineHeight: 1.5, marginBottom: 12, whiteSpace: 'pre-wrap', color: 'var(--text-primary)' }}>
                 {post.content}
               </p>
 
@@ -636,14 +636,14 @@ const Profile = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: 6,
-                    color: post.likes?.includes(currentUser.id) ? '#e74c3c' : '#999',
+                    color: post.likes?.includes(currentUser.id) ? 'var(--danger-color)' : 'var(--text-tertiary)',
                     fontWeight: 600,
                     fontSize: 14
                   }}
                 >
                   ❤️ {post.likes?.length || 0}
                 </button>
-                <span style={{ color: '#999', fontSize: 14 }}>
+                <span style={{ color: 'var(--text-tertiary)', fontSize: 14 }}>
                   💬 {post.comments?.length || 0}
                 </span>
               </div>

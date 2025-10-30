@@ -1,3 +1,20 @@
+:root {
+  /* Modern Professional Blue Theme */
+  --primary-color: #0A66C2;
+  --primary-hover: #004182;
+  --primary-light: #378FE9;
+  --success-color: #057642;
+  --danger-color: #CC1016;
+  --background: #F3F2EF;
+  --surface: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #E0E0E0;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-hover: rgba(0, 0, 0, 0.16);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +22,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text-primary);
 }
 
 code {
@@ -28,16 +47,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--text-tertiary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--primary-color);
 }
 
 /* Responsive utilities */
@@ -63,5 +82,5 @@ button:active {
 
 .post-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  box-shadow: 0 4px 16px var(--shadow-hover) !important;
 }

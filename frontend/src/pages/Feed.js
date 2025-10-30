@@ -164,15 +164,15 @@ const Feed = () => {
         onClick={() => setIsSidebarOpen(false)}
       />
 
-      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--background)' }}>
         {/* Sidebar */}
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`} style={{
         width: '260px',
-        backgroundColor: '#fff',
-        borderRight: '1px solid #e1e4e8',
+        backgroundColor: 'var(--surface)',
+        borderRight: '1px solid var(--border-color)',
         position: 'fixed',
         height: '100vh',
-        boxShadow: '2px 0 8px rgba(0,0,0,0.05)',
+        boxShadow: '2px 0 8px var(--shadow)',
         display: 'flex',
         flexDirection: 'column'
       }}>
@@ -188,7 +188,7 @@ const Feed = () => {
         <div style={{
           fontSize: 24,
           fontWeight: 700,
-          color: '#0984e3',
+          color: 'var(--primary-color)',
           marginBottom: 40,
           paddingLeft: 8
         }}>
@@ -200,14 +200,14 @@ const Feed = () => {
           gap: 12,
           padding: '12px 8px',
           marginBottom: 24,
-          backgroundColor: '#f6f8fa',
+          backgroundColor: 'var(--background)',
           borderRadius: 8
         }}>
           <div style={{
             width: 48,
             height: 48,
             borderRadius: '50%',
-            backgroundColor: '#0984e3',
+            backgroundColor: 'var(--primary-color)',
             color: 'white',
             display: 'flex',
             alignItems: 'center',
@@ -218,10 +218,10 @@ const Feed = () => {
             {getInitial(user.name)}
           </div>
           <div style={{ flex: 1, overflow: 'hidden' }}>
-            <div style={{ fontWeight: 600, fontSize: 15, color: '#24292e', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {user.name}
             </div>
-            <div style={{ fontSize: 13, color: '#586069' }}>
+            <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>
               @{user.name.toLowerCase().replace(/\s+/g, '')}
             </div>
           </div>
@@ -238,7 +238,7 @@ const Feed = () => {
               gap: 12,
               padding: '12px 16px',
               marginBottom: 8,
-              backgroundColor: '#0984e3',
+              backgroundColor: 'var(--primary-color)',
               color: 'white',
               border: 'none',
               borderRadius: 8,
@@ -262,7 +262,7 @@ const Feed = () => {
               padding: '12px 16px',
               marginBottom: 8,
               backgroundColor: 'transparent',
-              color: '#24292e',
+              color: 'var(--text-primary)',
               border: 'none',
               borderRadius: 8,
               cursor: 'pointer',
@@ -282,8 +282,8 @@ const Feed = () => {
         {/* Logout Button - Fixed at bottom */}
         <div style={{
           padding: '16px',
-          borderTop: '1px solid #e1e4e8',
-          backgroundColor: '#fff'
+          borderTop: '1px solid var(--border-color)',
+          backgroundColor: 'var(--surface)'
         }}>
           <button
             onClick={logout}
@@ -292,9 +292,9 @@ const Feed = () => {
               alignItems: 'center',
               gap: 12,
               padding: '12px 16px',
-              backgroundColor: '#fff',
-              color: '#d73a49',
-              border: '1.5px solid #d73a49',
+              backgroundColor: 'var(--surface)',
+              color: 'var(--danger-color)',
+              border: '1.5px solid var(--danger-color)',
               borderRadius: 8,
               cursor: 'pointer',
               fontSize: 15,
@@ -303,12 +303,12 @@ const Feed = () => {
               width: '100%'
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#d73a49';
+              e.currentTarget.style.backgroundColor = 'var(--danger-color)';
               e.currentTarget.style.color = 'white';
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = '#fff';
-              e.currentTarget.style.color = '#d73a49';
+              e.currentTarget.style.backgroundColor = 'var(--surface)';
+              e.currentTarget.style.color = 'var(--danger-color)';
             }}
           >
             <span style={{ fontSize: 20 }}>🚪</span>
@@ -338,7 +338,7 @@ const Feed = () => {
               display: 'flex',
               alignItems: 'center',
               gap: 8,
-              color: '#0984e3',
+              color: 'var(--primary-color)',
               fontWeight: 700
             }}
           >
@@ -347,28 +347,28 @@ const Feed = () => {
           </button>
         </div>
 
-        <div style={{ backgroundColor: 'white', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', marginBottom: 24 }}>
-          <h2 style={{ margin: '0 0 20px 0', fontSize: 22, color: '#24292e' }}>What's on your mind?</h2>
+        <div style={{ backgroundColor: 'var(--surface)', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px var(--shadow)', marginBottom: 24 }}>
+          <h2 style={{ margin: '0 0 20px 0', fontSize: 22, color: 'var(--text-primary)' }}>What's on your mind?</h2>
           <form onSubmit={handleCreatePost}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{
-                width: 44, height: 44, borderRadius: "50%", background: "#0984e3",
+                width: 44, height: 44, borderRadius: "50%", background: "var(--primary-color)",
                 display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFF', fontWeight: 700, fontSize: 20
               }}>{getInitial(user.name)}</div>
               <textarea value={newPost} onChange={e => setNewPost(e.target.value)} placeholder="Share something with your network..." rows="3"
-                style={{ flex: 1, padding: 12, fontSize: 16, borderRadius: 7, border: "1px solid #c1c7cc", marginBottom: 0, resize: 'vertical' }} />
+                style={{ flex: 1, padding: 12, fontSize: 16, borderRadius: 7, border: "1px solid var(--border-color)", marginBottom: 0, resize: 'vertical' }} />
             </div>
             <div style={{ marginTop: 10, textAlign: 'right' }}>
               <button type="submit" disabled={loading || !newPost.trim()} style={{
-                padding: "9px 26px", backgroundColor: loading ? '#ccc' : '#0984e3', color: 'white', border: 'none', borderRadius: '22px', fontWeight: 600, fontSize: 15, marginTop: 4, cursor: loading ? 'not-allowed' : 'pointer'
+                padding: "9px 26px", backgroundColor: loading ? 'var(--text-tertiary)' : 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '22px', fontWeight: 600, fontSize: 15, marginTop: 4, cursor: loading ? 'not-allowed' : 'pointer'
               }}>{loading ? 'Posting...' : 'Post'}</button>
             </div>
-            {error && <div style={{ color: 'red', marginTop: 7 }}>{error}</div>}
+            {error && <div style={{ color: 'var(--danger-color)', marginTop: 7 }}>{error}</div>}
           </form>
         </div>
 
         <div>
-          <h3 style={{ color: '#0984e3', fontWeight: 600, marginBottom: 15 }}>Network Feed</h3>
+          <h3 style={{ color: 'var(--primary-color)', fontWeight: 600, marginBottom: 15 }}>Network Feed</h3>
           {postsLoading ? (
             <LoadingSkeleton count={3} />
           ) : posts.length === 0 ? (
@@ -378,27 +378,27 @@ const Feed = () => {
             const isLiked = post.likes && post.likes.includes(user.id);
             const likeCount = post.likes ? post.likes.length : 0;
             return (
-              <div key={post._id} className="post-card" style={{ border: '1px solid #dfdfdf', borderRadius: '8px', padding: '18px 19px', marginBottom: '15px', background: '#fff', boxShadow: '0 0.5px 2px 0 #eaeaea' }}>
+              <div key={post._id} className="post-card" style={{ border: '1px solid var(--border-color)', borderRadius: '8px', padding: '18px 19px', marginBottom: '15px', background: 'var(--surface)', boxShadow: '0 0.5px 2px 0 var(--shadow)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 9 }}>
                   <div style={{
-                    width: 42, height: 42, borderRadius: "50%", background: "#eaeaea",
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0984e3', fontWeight: 700, fontSize: 19,
+                    width: 42, height: 42, borderRadius: "50%", background: "var(--background)",
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary-color)', fontWeight: 700, fontSize: 19,
                     cursor: 'pointer'
                   }}
                   onClick={() => navigate(`/profile/${post.userId}`)}
                   >{getInitial(post.userName)}</div>
                   <div>
                     <strong 
-                      style={{ color: '#0984e3', fontSize: '16.7px', cursor: 'pointer' }}
+                      style={{ color: 'var(--primary-color)', fontSize: '16.7px', cursor: 'pointer' }}
                       onClick={() => navigate(`/profile/${post.userId}`)}
                     >
                       {post.userName}
                     </strong>
-                    <div style={{ color: "#78868b", fontSize: 12, marginTop: 1 }}>{formatDate(post.createdAt)}</div>
+                    <div style={{ color: "var(--text-secondary)", fontSize: 12, marginTop: 1 }}>{formatDate(post.createdAt)}</div>
                   </div>
                 </div>
-                <div style={{ fontSize: 15.6, lineHeight: 1.55, color: "#333", fontWeight: 400, marginBottom: 12 }}>{post.content}</div>
-                <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 10, display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ fontSize: 15.6, lineHeight: 1.55, color: "var(--text-primary)", fontWeight: 400, marginBottom: 12 }}>{post.content}</div>
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: 10, display: 'flex', alignItems: 'center', gap: 12 }}>
                   <button
                     onClick={() => handleLike(post._id)}
                     style={{
@@ -412,7 +412,7 @@ const Feed = () => {
                       borderRadius: 4,
                       fontSize: 14,
                       fontWeight: 600,
-                      color: isLiked ? '#0984e3' : '#666',
+                      color: isLiked ? 'var(--primary-color)' : 'var(--text-secondary)',
                       transition: 'background 0.2s'
                     }}
                   >
@@ -431,7 +431,7 @@ const Feed = () => {
                       borderRadius: 4,
                       fontSize: 14,
                       fontWeight: 600,
-                      color: '#666',
+                      color: 'var(--text-secondary)',
                       transition: 'background 0.2s'
                     }}
                     onClick={() => setShowComments({ ...showComments, [post._id]: !showComments[post._id] })}
@@ -453,7 +453,7 @@ const Feed = () => {
                         borderRadius: 4,
                         fontSize: 14,
                         fontWeight: 600,
-                        color: '#ef4444'
+                        color: 'var(--danger-color)'
                       }}
                     >
                       <span>Delete</span>
@@ -469,18 +469,18 @@ const Feed = () => {
                         value={commentInput[post._id] || ''}
                         onChange={e => handleCommentInput(post._id, e.target.value)}
                         placeholder="Write a comment..."
-                        style={{ flex: 1, padding: 6, borderRadius: 4, border: "1px solid #ccc" }}
+                        style={{ flex: 1, padding: 6, borderRadius: 4, border: "1px solid var(--border-color)" }}
                       />
-                      <button type="submit" style={{ padding: "6px 14px", borderRadius: 4, background: "#0984e3", color: "#fff", border: 'none' }}>Post</button>
+                      <button type="submit" style={{ padding: "6px 14px", borderRadius: 4, background: "var(--primary-color)", color: "#fff", border: 'none' }}>Post</button>
                     </form>
                     <div>
                       {(post.comments || []).map(comment => (
-                        <div key={comment._id} style={{ padding: 4, borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span style={{ fontWeight: 600 }}>{comment.userName}</span>:
-                          <span>{comment.text}</span>
-                          <span style={{ marginLeft: 'auto', color: '#888', fontSize: 10 }}>{formatDate(comment.createdAt)}</span>
+                        <div key={comment._id} style={{ padding: 4, borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{comment.userName}</span>:
+                          <span style={{ color: 'var(--text-primary)' }}>{comment.text}</span>
+                          <span style={{ marginLeft: 'auto', color: 'var(--text-secondary)', fontSize: 10 }}>{formatDate(comment.createdAt)}</span>
                           {(comment.userId === user.id || post.userId === user.id) &&
-                            <button onClick={() => handleDeleteComment(post._id, comment._id)} style={{ marginLeft: 10, color: 'red', border: 'none', background: 'none', fontSize: 13, cursor: 'pointer' }}>Delete</button>
+                            <button onClick={() => handleDeleteComment(post._id, comment._id)} style={{ marginLeft: 10, color: 'var(--danger-color)', border: 'none', background: 'none', fontSize: 13, cursor: 'pointer' }}>Delete</button>
                           }
                         </div>
                       ))}
