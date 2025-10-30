@@ -184,18 +184,16 @@ const Feed = () => {
           padding: '24px 16px',
           paddingBottom: '16px'
         }}>
-          {/* Logo */}
-          <div style={{
-            fontSize: 24,
-            fontWeight: 700,
-            color: '#0984e3',
-            marginBottom: 40,
-            paddingLeft: 8
-          }}>
-            LinkNest
-          </div>
-
-        {/* User Info */}
+        {/* Logo */}
+        <div style={{
+          fontSize: 24,
+          fontWeight: 700,
+          color: '#0984e3',
+          marginBottom: 40,
+          paddingLeft: 8
+        }}>
+          LINKOVA
+        </div>        {/* User Info */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -345,7 +343,7 @@ const Feed = () => {
             }}
           >
             <span>☰</span>
-            <span style={{ fontSize: 20 }}>LinkNest</span>
+            <span style={{ fontSize: 20 }}>LINKOVA</span>
           </button>
         </div>
 

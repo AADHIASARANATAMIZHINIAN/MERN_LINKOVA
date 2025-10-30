@@ -200,7 +200,7 @@ const Profile = () => {
             marginBottom: 40,
             paddingLeft: 8
           }}>
-            LinkNest
+            LINKOVA
           </div>
 
         {/* User Info */}
@@ -353,7 +353,7 @@ const Profile = () => {
             }}
           >
             <span>☰</span>
-            <span style={{ fontSize: 20 }}>LinkNest</span>
+            <span style={{ fontSize: 20 }}>LINKOVA</span>
           </button>
         </div>
 

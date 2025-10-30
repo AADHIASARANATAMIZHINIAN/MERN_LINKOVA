@@ -1,4 +1,4 @@
-# Deployment Guide for LinkNest
+# Deployment Guide for LINKOVA
 
 ## 📦 GitHub Repository
 Your code is now live at: **https://github.com/AADHIASARANATAMIZHINIAN/MERN_LinkNest**
@@ -15,7 +15,7 @@ Your code is now live at: **https://github.com/AADHIASARANATAMIZHINIAN/MERN_Link
 1. Click "New +" → "Web Service"
 2. Connect your GitHub repository: `MERN_LinkNest`
 3. Configure:
-   - **Name**: `linknest-backend`
+   - **Name**: `linkova-backend`
    - **Root Directory**: `backend`
    - **Environment**: `Node`
    - **Build Command**: `npm install`
@@ -33,7 +33,7 @@ PORT=5000
 ### Step 4: Deploy
 - Click "Create Web Service"
 - Wait for deployment (3-5 minutes)
-- Copy your backend URL (e.g., `https://linknest-backend.onrender.com`)
+- Copy your backend URL (e.g., `https://linkova-backend.onrender.com`)
 
 ---
 
@@ -85,7 +85,7 @@ Your app will be live at: `https://your-app.vercel.app`
 5. Whitelist IP: Add `0.0.0.0/0` (allow all IPs)
 6. Get connection string:
    ```
-   mongodb+srv://<username>:<password>@cluster.mongodb.net/linknest?retryWrites=true&w=majority
+   mongodb+srv://<username>:<password>@cluster.mongodb.net/linkova?retryWrites=true&w=majority
    ```
 7. Replace `<username>` and `<password>` with your credentials
 8. Use this as `MONGO_URI` in Render environment variables
@@ -130,7 +130,7 @@ Your app will be live at: `https://your-app.vercel.app`
 
 ### Backend (.env on Render/Railway)
 ```env
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/linknest
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/linkova
 JWT_SECRET=your_super_secret_jwt_key_12345
 PORT=5000
 ```

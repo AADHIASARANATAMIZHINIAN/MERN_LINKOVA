@@ -1,4 +1,4 @@
-# LinkNest - Social Media App
+# LINKOVA - Social Media App
 
 A modern full-stack social media application built with React and Node.js.
 
