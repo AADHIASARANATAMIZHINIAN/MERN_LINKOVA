@@ -59,16 +59,10 @@ html {
   background: var(--primary-color);
 }
 
-/* Responsive utilities */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-}
-
 /* Button hover effects */
 button {
   transition: all 0.2s ease-in-out;
+  min-height: 44px; /* Touch-friendly minimum */
 }
 
 button:active {
@@ -83,4 +77,138 @@ button:active {
 .post-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px var(--shadow-hover) !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile First - Small phones (320px - 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Container adjustments */
+  .feed-container,
+  .profile-container {
+    padding: 8px !important;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 280px !important;
+  }
+
+  /* Post cards */
+  .post-card {
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Buttons */
+  button {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    min-height: 44px;
+  }
+
+  /* Input fields */
+  input, textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 12px !important;
+  }
+
+  /* Post content */
+  .post-content {
+    font-size: 14px !important;
+  }
+
+  /* Comment sections */
+  .comment {
+    padding: 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* Avatar sizes */
+  .avatar {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Tablets and larger phones (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  .feed-container,
+  .profile-container {
+    padding: 12px !important;
+  }
+
+  .sidebar {
+    width: 300px !important;
+  }
+
+  .post-card {
+    padding: 16px !important;
+  }
+
+  input, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .feed-container,
+  .profile-container {
+    max-width: 720px !important;
+    padding: 16px !important;
+  }
+
+  .sidebar {
+    width: 260px !important;
+  }
+}
+
+/* Landscape mode optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    height: 100vh !important;
+    overflow-y: auto !important;
+  }
+
+  .hamburger-menu {
+    top: 10px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .post-card:hover {
+    transform: none;
+  }
+
+  /* Better tap highlighting */
+  * {
+    -webkit-tap-highlight-color: rgba(10, 102, 194, 0.1);
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .avatar, .profile-pic {
+    image-rendering: -webkit-optimize-contrast;
+  }
 }
