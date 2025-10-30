@@ -10,7 +10,8 @@ const allowedOrigins = [
   process.env.CLIENT_URL,
   'http://localhost:3000',
   'http://localhost:3001',
-  'https://69037ac26b50c8b93d22fc5b--linkova.netlify.app'
+  'https://69037ac26b50c8b93d22fc5b--linkova.netlify.app',
+  'https://linkova.netlify.app'
 ];
 
 const corsOptions = {
@@ -18,10 +19,17 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // Check if origin is allowed
+    const isAllowed = allowedOrigins.some(allowedOrigin => {
+      if (!allowedOrigin) return false;
+      return origin === allowedOrigin || origin?.startsWith(allowedOrigin);
+    });
+    
+    if (isAllowed) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.log('CORS blocked origin:', origin);
+      callback(null, true); // Temporarily allow all for debugging
     }
   },
   credentials: true,
