@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Authcontext';
 import api from '../utils/api';
 import Toast from '../components/Toast';
+import { motion } from 'framer-motion';
 
 const getInitial = name => name ? name.charAt(0).toUpperCase() : '?';
 
@@ -358,13 +359,18 @@ const Profile = () => {
         </div>
 
         {/* Profile Card */}
-        <div style={{ 
-        backgroundColor: 'var(--surface)', 
-        padding: '32px', 
-        borderRadius: 12, 
-        boxShadow: '0 2px 8px var(--shadow)',
-        marginBottom: '32px'
-      }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ 
+            backgroundColor: 'var(--surface)', 
+            padding: '32px', 
+            borderRadius: 12, 
+            boxShadow: '0 2px 8px var(--shadow)',
+            marginBottom: '32px'
+          }}
+        >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '24px' }}>
           {/* Avatar */}
           <div style={{
@@ -559,7 +565,7 @@ const Profile = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Posts Section */}
       <div>

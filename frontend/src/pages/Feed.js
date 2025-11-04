@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import Toast from '../components/Toast';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const getInitial = name => name ? name.charAt(0).toUpperCase() : '?';
 
@@ -229,8 +230,10 @@ const Feed = () => {
 
         {/* Navigation */}
         <nav style={{ marginBottom: 24 }}>
-          <button
+          <motion.button
             onClick={() => navigate('/feed')}
+            whileHover={{ scale: 1.02, x: 5 }}
+            whileTap={{ scale: 0.98 }}
             style={{
               width: '100%',
               display: 'flex',
@@ -250,10 +253,12 @@ const Feed = () => {
           >
             <span style={{ fontSize: 20 }}>🏠</span>
             <span>Feed</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={() => navigate('/profile')}
+            whileHover={{ scale: 1.02, x: 5, backgroundColor: '#f6f8fa' }}
+            whileTap={{ scale: 0.98 }}
             style={{
               width: '100%',
               display: 'flex',
@@ -270,12 +275,10 @@ const Feed = () => {
               fontWeight: 600,
               transition: 'all 0.2s'
             }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f6f8fa'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             <span style={{ fontSize: 20 }}>👤</span>
             <span>Profile</span>
-          </button>
+          </motion.button>
         </nav>
         </div>
 
@@ -347,7 +350,12 @@ const Feed = () => {
           </button>
         </div>
 
-        <div style={{ backgroundColor: 'var(--surface)', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px var(--shadow)', marginBottom: 24 }}>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ backgroundColor: 'var(--surface)', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px var(--shadow)', marginBottom: 24 }}
+        >
           <h2 style={{ margin: '0 0 20px 0', fontSize: 22, color: 'var(--text-primary)' }}>What's on your mind?</h2>
           <form onSubmit={handleCreatePost}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -359,26 +367,54 @@ const Feed = () => {
                 style={{ flex: 1, padding: 12, fontSize: 16, borderRadius: 7, border: "1px solid var(--border-color)", marginBottom: 0, resize: 'vertical' }} />
             </div>
             <div style={{ marginTop: 10, textAlign: 'right' }}>
-              <button type="submit" disabled={loading || !newPost.trim()} style={{
-                padding: "9px 26px", backgroundColor: loading ? 'var(--text-tertiary)' : 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '22px', fontWeight: 600, fontSize: 15, marginTop: 4, cursor: loading ? 'not-allowed' : 'pointer'
-              }}>{loading ? 'Posting...' : 'Post'}</button>
+              <motion.button 
+                type="submit" 
+                disabled={loading || !newPost.trim()}
+                whileHover={!loading && newPost.trim() ? { scale: 1.05 } : {}}
+                whileTap={!loading && newPost.trim() ? { scale: 0.95 } : {}}
+                style={{
+                  padding: "9px 26px", backgroundColor: loading ? 'var(--text-tertiary)' : 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '22px', fontWeight: 600, fontSize: 15, marginTop: 4, cursor: loading ? 'not-allowed' : 'pointer'
+                }}
+              >{loading ? 'Posting...' : 'Post'}</motion.button>
             </div>
             {error && <div style={{ color: 'var(--danger-color)', marginTop: 7 }}>{error}</div>}
           </form>
-        </div>
+        </motion.div>
 
         <div>
           <h3 style={{ color: 'var(--primary-color)', fontWeight: 600, marginBottom: 15 }}>Network Feed</h3>
           {postsLoading ? (
             <LoadingSkeleton count={3} />
           ) : posts.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '35px', background: '#f3f3f3', borderRadius: '7px', color: '#666', fontWeight: 600 }}>No posts yet. Start by sharing something!</div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{ textAlign: 'center', padding: '35px', background: '#f3f3f3', borderRadius: '7px', color: '#666', fontWeight: 600 }}
+            >
+              No posts yet. Start by sharing something!
+            </motion.div>
           ) : (
-            posts.map((post) => {
+            posts.map((post, index) => {
             const isLiked = post.likes && post.likes.includes(user.id);
             const likeCount = post.likes ? post.likes.length : 0;
             return (
-              <div key={post._id} className="post-card" style={{ border: '1px solid var(--border-color)', borderRadius: '8px', padding: '18px 19px', marginBottom: '15px', background: 'var(--surface)', boxShadow: '0 0.5px 2px 0 var(--shadow)' }}>
+              <motion.div 
+                key={post._id} 
+                className="post-card" 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  y: -4,
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)'
+                }}
+                style={{ border: '1px solid var(--border-color)', borderRadius: '8px', padding: '18px 19px', marginBottom: '15px', background: 'var(--surface)', boxShadow: '0 0.5px 2px 0 var(--shadow)', cursor: 'pointer' }}
+              >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 9 }}>
                   <div style={{
                     width: 42, height: 42, borderRadius: "50%", background: "var(--background)",
@@ -399,8 +435,10 @@ const Feed = () => {
                 </div>
                 <div style={{ fontSize: 15.6, lineHeight: 1.55, color: "var(--text-primary)", fontWeight: 400, marginBottom: 12 }}>{post.content}</div>
                 <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: 10, display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <button
+                  <motion.button
                     onClick={() => handleLike(post._id)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     style={{
                       background: 'none',
                       border: 'none',
@@ -416,10 +454,17 @@ const Feed = () => {
                       transition: 'background 0.2s'
                     }}
                   >
-                    <span>Like</span>
+                    <motion.span
+                      animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
+                      transition={{ duration: 0.3 }}
+                    >
+                      Like
+                    </motion.span>
                     {likeCount > 0 && <span>({likeCount})</span>}
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     style={{
                       background: 'none',
                       border: 'none',
@@ -438,9 +483,11 @@ const Feed = () => {
                   >
                     <span>Comment</span>
                     {post.comments && <span>({post.comments.length})</span>}
-                  </button>
+                  </motion.button>
                   {post.userId === user.id && (
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       onClick={() => handleDelete(post._id)}
                       style={{
                         background: 'none',
@@ -457,13 +504,20 @@ const Feed = () => {
                       }}
                     >
                       <span>Delete</span>
-                    </button>
+                    </motion.button>
                   )}
                 </div>
 
                 {/* Comment Section */}
+                <AnimatePresence>
                 {showComments[post._id] && (
-                  <div style={{ marginTop: 10, paddingLeft: 20 }}>
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ marginTop: 10, paddingLeft: 20 }}
+                  >
                     <form onSubmit={e => handleAddComment(post._id, e)} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                       <input
                         value={commentInput[post._id] || ''}
@@ -485,9 +539,10 @@ const Feed = () => {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
-              </div>
+                </AnimatePresence>
+              </motion.div>
             );
           })
         )}
