@@ -42,11 +42,13 @@ const Login = () => {
         }}
       >
         <img 
-          src="/logo.svg" 
+          src="/logo192.png" 
           alt="LINKOVA Logo"
           style={{
             width: '80px',
-            height: '80px'
+            height: '80px',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(10, 102, 194, 0.2)'
           }}
         />
         <h2 

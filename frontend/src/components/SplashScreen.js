@@ -30,12 +30,13 @@ const SplashScreen = () => {
         }}
       >
         <img 
-          src="/logo.svg" 
+          src="/logo192.png" 
           alt="LINKOVA Logo"
           style={{
             width: '120px',
             height: '120px',
-            filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2))',
+            borderRadius: '12px',
+            filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))',
           }}
         />
       </motion.div>

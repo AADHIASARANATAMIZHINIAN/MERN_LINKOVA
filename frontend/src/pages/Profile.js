@@ -213,11 +213,12 @@ const Profile = () => {
               }}
             >
               <img 
-                src="/logo.svg" 
+                src="/logo192.png" 
                 alt="LINKOVA"
                 style={{
                   width: 32,
-                  height: 32
+                  height: 32,
+                  borderRadius: '6px'
                 }}
               />
               <span style={{
@@ -381,11 +382,12 @@ const Profile = () => {
           >
             <span>☰</span>
             <img 
-              src="/logo.svg" 
+              src="/logo192.png" 
               alt="LINKOVA"
               style={{
                 width: 24,
-                height: 24
+                height: 24,
+                borderRadius: '4px'
               }}
             />
             <span style={{ fontSize: 14 }}>LINKOVA</span>
