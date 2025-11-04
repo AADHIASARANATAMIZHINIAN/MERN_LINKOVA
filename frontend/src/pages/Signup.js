@@ -29,14 +29,38 @@ const Signup = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{ maxWidth: '400px', margin: '100px auto', padding: '30px', boxShadow: '0 2px 12px var(--shadow)', borderRadius: '12px', backgroundColor: 'var(--surface)' }}
     >
-      <motion.h2 
+      <motion.div
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        style={{ textAlign: 'center', color: 'var(--primary-color)', marginBottom: '30px', fontSize: '32px', fontWeight: 700 }}
+        style={{ 
+          textAlign: 'center', 
+          marginBottom: '30px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 12
+        }}
       >
-        Join LINKOVA
-      </motion.h2>
+        <img 
+          src="/logo.svg" 
+          alt="LINKOVA Logo"
+          style={{
+            width: '80px',
+            height: '80px'
+          }}
+        />
+        <h2 
+          style={{ 
+            color: 'var(--primary-color)', 
+            fontSize: '32px', 
+            fontWeight: 700,
+            margin: 0
+          }}
+        >
+          Join LINKOVA
+        </h2>
+      </motion.div>
       {error && <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}

@@ -201,7 +201,33 @@ const Profile = () => {
             marginBottom: 40,
             paddingLeft: 8
           }}>
-            LINKOVA
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                cursor: 'pointer'
+              }}
+            >
+              <img 
+                src="/logo.svg" 
+                alt="LINKOVA"
+                style={{
+                  width: 32,
+                  height: 32
+                }}
+              />
+              <span style={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: 'var(--primary-color)',
+              }}>
+                LINKOVA
+              </span>
+            </motion.div>
           </div>
 
         {/* User Info */}
@@ -354,7 +380,15 @@ const Profile = () => {
             }}
           >
             <span>☰</span>
-            <span style={{ fontSize: 20 }}>LINKOVA</span>
+            <img 
+              src="/logo.svg" 
+              alt="LINKOVA"
+              style={{
+                width: 24,
+                height: 24
+              }}
+            />
+            <span style={{ fontSize: 14 }}>LINKOVA</span>
           </button>
         </div>
 

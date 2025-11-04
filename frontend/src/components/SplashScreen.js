@@ -29,18 +29,15 @@ const SplashScreen = () => {
           marginBottom: '30px',
         }}
       >
-        <h1
+        <img 
+          src="/logo.svg" 
+          alt="LINKOVA Logo"
           style={{
-            fontSize: '56px',
-            color: 'white',
-            margin: '0',
-            fontWeight: 'bold',
-            letterSpacing: '2px',
-            textShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+            width: '120px',
+            height: '120px',
+            filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2))',
           }}
-        >
-          🔗 LINKOVA
-        </h1>
+        />
       </motion.div>
 
       {/* Tagline */}
@@ -51,7 +48,7 @@ const SplashScreen = () => {
         style={{
           color: 'rgba(255, 255, 255, 0.9)',
           fontSize: '14px',
-          marginTop: '10px',
+          marginTop: '20px',
           letterSpacing: '1px',
           textTransform: 'uppercase',
         }}
