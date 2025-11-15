@@ -5,7 +5,6 @@ import ProfileAvatar from './ProfileAvatar';
 const PostCreator = ({ user, onSubmit, loading }) => {
   const [content, setContent] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showOptions, setShowOptions] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

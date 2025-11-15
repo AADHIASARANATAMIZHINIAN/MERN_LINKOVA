@@ -4,7 +4,6 @@ import { useAuth } from '../context/Authcontext';
 import api from '../utils/api';
 import Toast from '../components/Toast';
 import ProfileAvatar from '../components/ProfileAvatar';
-import ProfileHeader from '../components/ProfileHeader';
 import { motion } from 'framer-motion';
 
 const Profile = () => {

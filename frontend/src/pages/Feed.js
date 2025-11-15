@@ -11,7 +11,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [commentInput, setCommentInput] = useState({});
@@ -50,13 +49,11 @@ const Feed = () => {
 
   const handleCreatePost = async (content) => {
     setLoading(true);
-    setError('');
     try {
       const response = await api.post('/posts', { content });
       setPosts([response.data, ...posts]);
       showToast('Post created successfully!', 'success');
     } catch {
-      setError('Failed to create post');
       showToast('Failed to create post', 'error');
     }
     setLoading(false);
