@@ -12,7 +12,6 @@ const PostCreator = ({ user, onSubmit, loading }) => {
     onSubmit(content);
     setContent('');
     setIsExpanded(false);
-    setShowOptions(false);
   };
 
   const options = [
