@@ -406,24 +406,12 @@ const Profile = () => {
         >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '24px' }}>
           {/* Avatar */}
-          <div style={{
-            width: 100,
-            height: 100,
-            borderRadius: '50%',
-            backgroundColor: 'var(--primary-color)',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 40,
-            fontWeight: 700,
-            flexShrink: 0
-          }}>
-            {profile.avatar ? (
-              <img src={profile.avatar} alt={profile.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
-            ) : (
-              getInitial(profile.name)
-            )}
+          <div style={{ flexShrink: 0 }}>
+            <ProfileAvatar 
+              avatarId={profile.avatar} 
+              userName={profile.name} 
+              size={100}
+            />
           </div>
 
           {/* Profile Info */}
