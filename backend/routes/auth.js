@@ -7,7 +7,7 @@ const User = require('../models/user');
 // @route   POST /api/auth/signup
 // @desc    Register user
 router.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, avatar } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -15,7 +15,7 @@ router.post('/signup', async (req, res) => {
       return res.status(400).json({ msg: 'User already exists' });
     }
 
-    user = new User({ name, email, password });
+    user = new User({ name, email, password, avatar: avatar || '' });
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
@@ -26,7 +26,7 @@ router.post('/signup', async (req, res) => {
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+        res.json({ token, user: { id: user.id, name: user.name, email: user.email, avatar: user.avatar } });
       }
     );
   } catch (err) {
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+        res.json({ token, user: { id: user.id, name: user.name, email: user.email, avatar: user.avatar } });
       }
     );
   } catch (err) {

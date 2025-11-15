@@ -25,6 +25,11 @@ router.get('/:id', async (req, res) => {
         email: user.email,
         bio: user.bio,
         avatar: user.avatar,
+        location: user.location || '',
+        website: user.website || '',
+        occupation: user.occupation || '',
+        followers: user.followers || [],
+        following: user.following || [],
         createdAt: user.createdAt
       },
       posts
@@ -58,6 +63,11 @@ router.get('/me/profile', auth, async (req, res) => {
         email: user.email,
         bio: user.bio,
         avatar: user.avatar,
+        location: user.location || '',
+        website: user.website || '',
+        occupation: user.occupation || '',
+        followers: user.followers || [],
+        following: user.following || [],
         createdAt: user.createdAt
       },
       posts
@@ -71,7 +81,7 @@ router.get('/me/profile', auth, async (req, res) => {
 // @route   PUT /api/users/profile
 // @desc    Update user profile
 router.put('/profile', auth, async (req, res) => {
-  const { name, bio, avatar, currentPassword, newPassword } = req.body;
+  const { name, bio, avatar, location, website, occupation, currentPassword, newPassword } = req.body;
 
   try {
     const user = await User.findById(req.user.id);
@@ -84,6 +94,9 @@ router.put('/profile', auth, async (req, res) => {
     if (name) user.name = name;
     if (bio !== undefined) user.bio = bio;
     if (avatar !== undefined) user.avatar = avatar;
+    if (location !== undefined) user.location = location;
+    if (website !== undefined) user.website = website;
+    if (occupation !== undefined) user.occupation = occupation;
 
     // If user wants to change password
     if (currentPassword && newPassword) {
@@ -99,17 +112,25 @@ router.put('/profile', auth, async (req, res) => {
 
     await user.save();
 
-    // Also update userName in all posts
-    if (name) {
+    // Also update userName and avatar in all posts
+    if (name || avatar !== undefined) {
+      const updateFields = {};
+      if (name) updateFields.userName = name;
+      if (avatar !== undefined) updateFields.userAvatar = avatar;
+      
       await Post.updateMany(
         { userId: req.user.id },
-        { $set: { userName: name } }
+        { $set: updateFields }
       );
 
-      // Update userName in all comments by this user
+      // Update userName and avatar in all comments by this user
+      const commentUpdateFields = {};
+      if (name) commentUpdateFields['comments.$[elem].userName'] = name;
+      if (avatar !== undefined) commentUpdateFields['comments.$[elem].userAvatar'] = avatar;
+      
       await Post.updateMany(
         { 'comments.userId': req.user.id },
-        { $set: { 'comments.$[elem].userName': name } },
+        { $set: commentUpdateFields },
         { arrayFilters: [{ 'elem.userId': req.user.id }] }
       );
     }
@@ -120,6 +141,9 @@ router.put('/profile', auth, async (req, res) => {
       email: user.email,
       bio: user.bio,
       avatar: user.avatar,
+      location: user.location,
+      website: user.website,
+      occupation: user.occupation,
       createdAt: user.createdAt
     });
   } catch (err) {

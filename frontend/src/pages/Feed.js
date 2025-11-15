@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import Toast from '../components/Toast';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import PostCreator from '../components/PostCreator';
+import ProfileAvatar from '../components/ProfileAvatar';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const getInitial = name => name ? name.charAt(0).toUpperCase() : '?';
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { user, logout } = useAuth();
@@ -24,6 +23,14 @@ const Feed = () => {
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
   };
+
+  const formatDate = (d) => new Date(d).toLocaleString([], { 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -41,15 +48,12 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-  const handleCreatePost = async (e) => {
-    e.preventDefault();
-    if (!newPost.trim()) return;
+  const handleCreatePost = async (content) => {
     setLoading(true);
     setError('');
     try {
-      const response = await api.post('/posts', { content: newPost });
+      const response = await api.post('/posts', { content });
       setPosts([response.data, ...posts]);
-      setNewPost('');
       showToast('Post created successfully!', 'success');
     } catch {
       setError('Failed to create post');
@@ -107,8 +111,6 @@ const Feed = () => {
       alert('Failed to delete comment');
     }
   };
-
-  const formatDate = (d) => new Date(d).toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
   return (
     <>
@@ -226,20 +228,11 @@ const Feed = () => {
           backgroundColor: 'var(--background)',
           borderRadius: 8
         }}>
-          <div style={{
-            width: 48,
-            height: 48,
-            borderRadius: '50%',
-            backgroundColor: 'var(--primary-color)',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 700,
-            fontSize: 20
-          }}>
-            {getInitial(user.name)}
-          </div>
+          <ProfileAvatar 
+            avatarId={user.avatar} 
+            userName={user.name} 
+            size={48}
+          />
           <div style={{ flex: 1, overflow: 'hidden' }}>
             <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {user.name}
@@ -381,36 +374,12 @@ const Feed = () => {
           </button>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ backgroundColor: 'var(--surface)', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px var(--shadow)', marginBottom: 24 }}
-        >
-          <h2 style={{ margin: '0 0 20px 0', fontSize: 22, color: 'var(--text-primary)' }}>What's on your mind?</h2>
-          <form onSubmit={handleCreatePost}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: "50%", background: "var(--primary-color)",
-                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFF', fontWeight: 700, fontSize: 20
-              }}>{getInitial(user.name)}</div>
-              <textarea value={newPost} onChange={e => setNewPost(e.target.value)} placeholder="Share something with your network..." rows="3"
-                style={{ flex: 1, padding: 12, fontSize: 16, borderRadius: 7, border: "1px solid var(--border-color)", marginBottom: 0, resize: 'vertical' }} />
-            </div>
-            <div style={{ marginTop: 10, textAlign: 'right' }}>
-              <motion.button 
-                type="submit" 
-                disabled={loading || !newPost.trim()}
-                whileHover={!loading && newPost.trim() ? { scale: 1.05 } : {}}
-                whileTap={!loading && newPost.trim() ? { scale: 0.95 } : {}}
-                style={{
-                  padding: "9px 26px", backgroundColor: loading ? 'var(--text-tertiary)' : 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '22px', fontWeight: 600, fontSize: 15, marginTop: 4, cursor: loading ? 'not-allowed' : 'pointer'
-                }}
-              >{loading ? 'Posting...' : 'Post'}</motion.button>
-            </div>
-            {error && <div style={{ color: 'var(--danger-color)', marginTop: 7 }}>{error}</div>}
-          </form>
-        </motion.div>
+        {/* Post Creator */}
+        <PostCreator 
+          user={user}
+          onSubmit={handleCreatePost}
+          loading={loading}
+        />
 
         <div>
           <h3 style={{ color: 'var(--primary-color)', fontWeight: 600, marginBottom: 15 }}>Network Feed</h3>
@@ -447,13 +416,12 @@ const Feed = () => {
                 style={{ border: '1px solid var(--border-color)', borderRadius: '8px', padding: '18px 19px', marginBottom: '15px', background: 'var(--surface)', boxShadow: '0 0.5px 2px 0 var(--shadow)', cursor: 'pointer' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 9 }}>
-                  <div style={{
-                    width: 42, height: 42, borderRadius: "50%", background: "var(--background)",
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary-color)', fontWeight: 700, fontSize: 19,
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => navigate(`/profile/${post.userId}`)}
-                  >{getInitial(post.userName)}</div>
+                  <ProfileAvatar 
+                    avatarId={post.userAvatar} 
+                    userName={post.userName} 
+                    size={42}
+                    onClick={() => navigate(`/profile/${post.userId}`)}
+                  />
                   <div>
                     <strong 
                       style={{ color: 'var(--primary-color)', fontSize: '16.7px', cursor: 'pointer' }}
@@ -560,13 +528,36 @@ const Feed = () => {
                     </form>
                     <div>
                       {(post.comments || []).map(comment => (
-                        <div key={comment._id} style={{ padding: 4, borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{comment.userName}</span>:
-                          <span style={{ color: 'var(--text-primary)' }}>{comment.text}</span>
-                          <span style={{ marginLeft: 'auto', color: 'var(--text-secondary)', fontSize: 10 }}>{formatDate(comment.createdAt)}</span>
-                          {(comment.userId === user.id || post.userId === user.id) &&
-                            <button onClick={() => handleDeleteComment(post._id, comment._id)} style={{ marginLeft: 10, color: 'var(--danger-color)', border: 'none', background: 'none', fontSize: 13, cursor: 'pointer' }}>Delete</button>
-                          }
+                        <div key={comment._id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                          <ProfileAvatar 
+                            avatarId={comment.userAvatar} 
+                            userName={comment.userName} 
+                            size={32}
+                          />
+                          <div style={{ flex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                              <span style={{ fontWeight: 600, color: 'var(--primary-color)', fontSize: 14 }}>{comment.userName}</span>
+                              <span style={{ color: 'var(--text-secondary)', fontSize: 11 }}>{formatDate(comment.createdAt)}</span>
+                            </div>
+                            <span style={{ color: 'var(--text-primary)', fontSize: 14 }}>{comment.text}</span>
+                            {(comment.userId === user.id || post.userId === user.id) &&
+                              <button 
+                                onClick={() => handleDeleteComment(post._id, comment._id)} 
+                                style={{ 
+                                  marginTop: 4, 
+                                  color: 'var(--danger-color)', 
+                                  border: 'none', 
+                                  background: 'none', 
+                                  fontSize: 12, 
+                                  cursor: 'pointer',
+                                  padding: '2px 4px',
+                                  textDecoration: 'underline'
+                                }}
+                              >
+                                Delete
+                              </button>
+                            }
+                          </div>
                         </div>
                       ))}
                     </div>

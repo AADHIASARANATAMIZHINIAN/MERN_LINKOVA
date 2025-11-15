@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Authcontext';
 import api from '../utils/api';
 import Toast from '../components/Toast';
+import ProfileAvatar from '../components/ProfileAvatar';
+import ProfileHeader from '../components/ProfileHeader';
 import { motion } from 'framer-motion';
-
-const getInitial = name => name ? name.charAt(0).toUpperCase() : '?';
 
 const Profile = () => {
   const { userId } = useParams();
@@ -26,6 +26,9 @@ const Profile = () => {
     name: '',
     bio: '',
     avatar: '',
+    location: '',
+    website: '',
+    occupation: '',
     currentPassword: '',
     newPassword: ''
   });
@@ -44,6 +47,9 @@ const Profile = () => {
           name: response.data.user.name,
           bio: response.data.user.bio || '',
           avatar: response.data.user.avatar || '',
+          location: response.data.user.location || '',
+          website: response.data.user.website || '',
+          occupation: response.data.user.occupation || '',
           currentPassword: '',
           newPassword: ''
         });
@@ -241,20 +247,11 @@ const Profile = () => {
           backgroundColor: 'var(--background)',
           borderRadius: 8
         }}>
-          <div style={{
-            width: 48,
-            height: 48,
-            borderRadius: '50%',
-            backgroundColor: 'var(--primary-color)',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 700,
-            fontSize: 20
-          }}>
-            {getInitial(currentUser.name)}
-          </div>
+          <ProfileAvatar 
+            avatarId={currentUser.avatar} 
+            userName={currentUser.name} 
+            size={48}
+          />
           <div style={{ flex: 1, overflow: 'hidden' }}>
             <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {currentUser.name}
@@ -628,21 +625,12 @@ const Profile = () => {
               boxShadow: '0 2px 4px var(--shadow)' 
             }}>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
-                <div style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--primary-color)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 700,
-                  marginRight: 12
-                }}>
-                  {getInitial(post.userName)}
-                </div>
-                <div style={{ flex: 1 }}>
+                <ProfileAvatar 
+                  avatarId={post.userAvatar} 
+                  userName={post.userName} 
+                  size={40}
+                />
+                <div style={{ flex: 1, marginLeft: 12 }}>
                   <div style={{ fontWeight: 600, fontSize: 15 }}>{post.userName}</div>
                   <div style={{ fontSize: 12, color: '#999' }}>{formatDate(post.createdAt)}</div>
                 </div>

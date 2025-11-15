@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Authcontext';
 import { motion } from 'framer-motion';
+import AvatarSelector from '../components/AvatarSelector';
+import { defaultAvatars } from '../utils/defaultAvatars';
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedAvatar, setSelectedAvatar] = useState(defaultAvatars[0].id);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
@@ -16,7 +19,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const result = await signup(name, email, password);
+    const result = await signup(name, email, password, selectedAvatar);
     if (result.success) navigate('/feed');
     else setError(result.message);
     setLoading(false);
@@ -27,7 +30,7 @@ const Signup = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{ maxWidth: '400px', margin: '100px auto', padding: '30px', boxShadow: '0 2px 12px var(--shadow)', borderRadius: '12px', backgroundColor: 'var(--surface)' }}
+      style={{ maxWidth: '550px', margin: '100px auto', padding: '30px', boxShadow: '0 2px 12px var(--shadow)', borderRadius: '12px', backgroundColor: 'var(--surface)' }}
     >
       <motion.div
         initial={{ scale: 0.8 }}
@@ -96,6 +99,17 @@ const Signup = () => {
           <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--text-primary)' }}>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', padding: '12px', border: '1.5px solid var(--border-color)', borderRadius: '6px', fontSize: '15px' }} />
         </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          style={{ marginBottom: '24px' }}
+        >
+          <AvatarSelector 
+            selectedAvatar={selectedAvatar}
+            onSelect={setSelectedAvatar}
+          />
+        </motion.div>
         <motion.button 
           type="submit" 
           disabled={loading}
@@ -103,7 +117,7 @@ const Signup = () => {
           whileTap={{ scale: 0.98 }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.7 }}
           style={{ width: '100%', padding: '14px', backgroundColor: 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600, fontSize: '16px', transition: 'all 0.2s' }}
         >
           {loading ? 'Creating Account...' : 'Sign Up'}
@@ -112,7 +126,7 @@ const Signup = () => {
       <motion.p 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.8 }}
         style={{ textAlign: 'center', marginTop: '24px', color: 'var(--text-secondary)' }}
       >
         Already have an account? <Link to="/login" style={{ color: 'var(--primary-color)', fontWeight: 600, textDecoration: 'none' }}>Login</Link>

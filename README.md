@@ -1,8 +1,8 @@
 # LINKOVA - Social Media App
 
-# 🚀 LINKOVA - Social Media Platform
+# 🚀 LINKOVA - Social Media Platform v2.0
 
-A modern full-stack social media application built with the MERN stack.
+A modern full-stack social media application built with the MERN stack with enhanced profiles and avatar system.
 
 ## 🌐 Live Demo
 
@@ -17,8 +17,7 @@ A modern full-stack social media application built with the MERN stack.
 
 ## ✨ Features
 
-## Features
-
+### Core Features
 - 🔐 User Authentication (Signup/Login)
 - 📝 Create, Read, Delete Posts
 - ❤️ Like/Unlike Posts
@@ -29,17 +28,27 @@ A modern full-stack social media application built with the MERN stack.
 - ⚡ Loading Skeletons
 - 🎯 Smooth Animations & Hover Effects
 
+### 🆕 New in v2.0
+- 🎨 **12 Cartoon Avatars** - Choose your avatar during signup
+- 👔 **Enhanced Profiles** - Location, occupation, website fields
+- 💼 **LinkedIn-Style Post Creator** - Expandable, modern post creation UI
+- 📊 **Profile Stats** - Follower/following count display
+- 🖼️ **Avatar System** - Avatars appear in posts, comments, and profiles
+- 🎭 **Beautiful Profile Header** - Gradient cover with detailed information
+- 🔄 **Auto-Update** - Avatar changes propagate to all posts and comments
+
 ## Tech Stack
 
 ### Frontend
-- React.js
-- React Router
+- React.js 19
+- React Router v7
 - Axios
+- Framer Motion (animations)
 - CSS3 with custom animations
 
 ### Backend
 - Node.js
-- Express.js
+- Express.js v5
 - MongoDB with Mongoose
 - JWT Authentication
 - bcryptjs for password hashing

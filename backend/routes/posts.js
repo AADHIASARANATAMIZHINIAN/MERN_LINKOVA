@@ -27,6 +27,7 @@ router.post('/', auth, async (req, res) => {
     const newPost = new Post({
       userId: req.user.id,      // ← CHANGED from "user" to "userId"
       userName: user.name,
+      userAvatar: user.avatar || '',
       content,
       likes: []                  // ← ADDED: Initialize empty likes array
     });
@@ -126,6 +127,7 @@ router.post('/:id/comments', auth, async (req, res) => {
     const newComment = {
       userId: req.user.id,
       userName: user.name,
+      userAvatar: user.avatar || '',
       text: req.body.text,
     };
 
